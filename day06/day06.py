@@ -20,24 +20,23 @@ def start_of_message(signal, k):
     win = signal[:k]
 
     i = k
-    found = False
-    while i < n and not found:
+    while i < n:
+        # let the set class remove duplicates ;)
         if len(win) == len(list(set(win))):
-            found = True
-            print(i)
+            return i
 
-        else:
-            # this could be implemented more efficiently to avoid checking
-            # windows that we know can not work due to former information
-            # eg.: signal: 'abcbccbda' after checking 'abcb' we could make a
-            # leap two indices ahead instead of one to avoid having both b's in
-            # the next substring again
+        # this could be implemented more efficiently to avoid checking
+        # windows that we know can not work due to former information
+        # eg.: signal: 'abcbccbda' after checking 'abcb' we could make a
+        # leap two indices ahead instead of one to avoid having both b's in
+        # the next substring again
 
-            # ANYWAYS, I was too lazy and the running time for the input is fine.
-            i += 1
-            win = signal[i-k : i]
+        # ANYWAYS, I was too lazy and the running time for the input is fine.
+        i += 1
+        win = signal[i-k : i]
 
     return i
+
 
 
 if __name__ == "__main__":
